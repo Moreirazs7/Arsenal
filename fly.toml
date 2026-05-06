@@ -1,0 +1,20 @@
+# fly.toml — configuração do bot Discord no Fly.io
+# Substitua "nome-do-seu-bot" por um nome único (letras minúsculas e hífens)
+
+app = "nome-do-seu-bot"
+primary_region = "gru"  # São Paulo
+
+[build]
+
+[env]
+  DB_PATH = "/data/database.db"
+
+# Volume persistente para o banco SQLite
+[[mounts]]
+  source = "bot_data"
+  destination = "/data"
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
