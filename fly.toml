@@ -1,20 +1,30 @@
-# fly.toml — configuração do bot Discord no Fly.io
-# Substitua "nome-do-seu-bot" por um nome único (letras minúsculas e hífens)
+# fly.toml app configuration file generated for arsenal on 2026-05-06T06:52:07Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "nome-do-seu-bot"
-primary_region = "gru"  # São Paulo
+app = 'arsenal'
+primary_region = 'gru'
 
 [build]
 
 [env]
-  DB_PATH = "/data/database.db"
+  DB_PATH = '/data/database.db'
 
-# Volume persistente para o banco SQLite
 [[mounts]]
-  source = "bot_data"
-  destination = "/data"
+  source = 'bot_data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[vm]]
-  memory = "256mb"
-  cpu_kind = "shared"
+  memory = '256mb'
+  cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 256
